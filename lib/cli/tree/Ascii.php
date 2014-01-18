@@ -21,21 +21,39 @@ class Ascii extends Renderer {
      * @param array $tree
      * @return string
      */
-    public function render(array $tree)
+    public function render(array $tree, $cycle=0)
     {
         $output = '';
 
-        $treeIterator = new \RecursiveTreeIterator(
-            new \RecursiveArrayIterator($tree),
-            \RecursiveTreeIterator::SELF_FIRST
-        );
-
-        foreach ($treeIterator as $val)
-        {
-            $output .= $val . "\n";
+        foreach ($tree as $key => $value) {
+            if (is_array($value)) {
+                $output .= $this->displayDepth($cycle) . $key . "\n";
+                $output .= $this->render($value, $cycle+1);
+            } else {
+                $output .= $this->displayDepth($cycle) . $value . "\n";
+            }
         }
 
         return $output;
     }
 
+    /**
+     * @param int $cycle
+     * @return string
+     */
+    private function displayDepth($cycle)
+    {
+        if ($cycle == 0) {
+            return '/';
+        } else {
+            $a   = 0;
+            $out = '';
+            while ($a < $cycle) {
+                $out .= '  ';
+                $a++;
+            }
+
+            return $out . '/';
+        }
+    }
 }
