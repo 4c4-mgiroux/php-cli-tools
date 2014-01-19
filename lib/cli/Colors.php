@@ -133,7 +133,7 @@ class Colors {
 			'%K' => array('color' => 'black', 'style' => 'bright'),
 			'%N' => array('color' => 'reset', 'style' => 'bright'),
 			'%f' => array('background' => 'white'),
-			'%F' => array('background' => 'white');
+			'%F' => array('background' => 'white'),
 			'%3' => array('background' => 'yellow'),
 			'%2' => array('background' => 'green'),
 			'%4' => array('background' => 'blue'),
