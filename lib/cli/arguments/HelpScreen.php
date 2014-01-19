@@ -108,7 +108,11 @@ class HelpScreen {
 			$names = array('--' . $option);
 
 			foreach ($settings['aliases'] as $alias) {
-				array_push($names, '-' . $alias);
+				if (strlen($alias) > 1) {
+                    array_push($names, '--' . $alias);
+                } else {
+                    array_push($names, '-' . $alias);
+                }
 			}
 
 			$names = join($names, ', ');
